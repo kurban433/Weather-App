@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100%;
+}
+.box{
+    text-align: center;
+    padding-bottom: 10px;
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10%;
+
+}
+.info{
+text-align: center;
+}
+.temp{
+    padding-top: 10px;
+}</style>
+<body>
+     <div class="box">
+         <div id="wicon">
+            <i class="fa fa-sun-o" style="color: orange; font-size: 40px"></i>
+         </div>
+         <div class="info">
+             <h2 class="location">
+                <i class="fa fa-street-view" ></i>{%location%},{%country%}
+             </h2>
+             <p id="date"></p>
+             <h1 class="temp">{%tempval%}&deg;C</h1>
+             <h3 class="mx-min">{%tempmin%}&deg;C | {%tempmax%}&deg;C</h3>
+         </div>
+       </div>
+
+<script>
+
+                var cdate=document.getElementById("date");
+                var wicon=document.getElementById("wicon")
+
+
+                 var tempst="{%tempst%}";
+
+               if (tempst=="Sunny")
+                {
+                    wicon .innerHTML="<i class='fa fa-sun-o' style='color: orange;'font-size: 40px;'></i>"
+
+                }
+                else if(tempst=="Clouds"){
+                    wicon.innerHTML="<i class='fa fa-cloud' style='color: blue;font-size: 40px;'></i>"                    
+                }
+                else if(tempst=="Rainy"){
+                    wicon .innerHTML="<i class='fas fa-cloud-rain'style='color: #a4b0be;font-size: 40px;'></i>"
+                      
+                }else{
+                    wicon .innerHTML="<i class='fa fa-cloud' style='color: #44c3de;font-size: 40px;'></i>"
+
+                }
+
+
+
+               
+               
+                var getcdate=()=>{
+                    var weekday = new Array(7);
+                        weekday[0] = "Sun";
+                        weekday[1] = "Mon";
+                        weekday[2] = "Tue";
+                        weekday[3] = "Wed";
+                        weekday[4] = "Thu";
+                        weekday[5] = "Fri";
+                        weekday[6] = "Sat";
+
+
+                   var ctime=new Date();
+                   var day=(weekday[ctime.getDay()]);
+                   return day
+                }
+                var getctime=()=>{
+                    const months = [
+                        "Jan", 
+                        "Feb",
+                        "Mar", 
+                        "Apr",
+                        "May", 
+                        "Jun", 
+                        "Jul", 
+                        "Aug", 
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec"];
+                    var now=new Date()
+                    var month=months[now.getMonth()];
+                    var date =now.getDate();
+
+                    var hours=now.getHours();
+                    var min=now.getMinutes();
+                    var p="AM";
+                    if(hours>11){
+                       p="PM"
+                    }if(hours>12)hours-=12
+                    if(min<10){
+                        min="0"+min
+                    }
+                    return ` ${month} ${date} | ${hours}:${min}${p}`
+                }
+               cdate.innerHTML=getcdate() +" |"+ getctime();
+
+                      </script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100w;
+}
+.wicon{
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 40px;
+}
+.info{
+text-align: center;
+}
+.temp{
+    padding-top: 10px;
+}
